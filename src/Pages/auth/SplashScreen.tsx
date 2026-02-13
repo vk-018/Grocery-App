@@ -1,4 +1,21 @@
-const SplashScreen = () => {
+
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+
+export default async function SplashScreen(){
+
+  const navigate= useNavigate();
+
+  useEffect(() => {
+
+    //redirect after 1.5 s
+    const timer = setTimeout(() => {
+      navigate("/onboarding")
+    }, 1500)
+
+    return () => clearTimeout(timer)    //to avoid memory leak , if component unmounts before 1.5 second
+  }, [navigate]);   //Even though it usually doesn’t change, React’s lint rule wants it included.
+
   return (
     <div className="h-screen bg-green-500 flex items-center justify-center">
       <div className="text-center">
@@ -25,4 +42,4 @@ const SplashScreen = () => {
   )
 }
 
-export default SplashScreen
+

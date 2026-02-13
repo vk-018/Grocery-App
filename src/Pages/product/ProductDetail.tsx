@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"      //used to access the parameters
+import { useParams } from "react-router-dom"      //used to access the
 import { products } from "../../Data/product"
 
 const ProductDetail = () => {
@@ -7,14 +7,14 @@ const ProductDetail = () => {
 
   // Find product based on id
   const product = products.find((p) => p.id === id)
-
+   //can add an early check with id too
   if (!product) {
-    return <div className="p-6">Product not found</div>
+    return <div className="p-6">Product not found</div>   
   }
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <div className="grid md:grid-cols-2 gap-10">
+    <div className="max-w-7xl mx-auto p-6">   {/**max width limit and  auto margin to center horizontally */}
+      <div className="grid md:grid-cols-2 gap-10">    {/*only med or larger to grid columns   // img- info kind of */}
         
         {/* Product Image */}
         <div className="h-80 bg-gray-100 rounded-xl" />
