@@ -1,4 +1,4 @@
-import { Product, Category } from "../Types/product.ts"       //disable verbAttiem module syntax to imposrt a type
+import { Product, Category } from "../Types/product.ts";
 
 // Strongly typed product list
 export const products: Product[] = [
@@ -9,6 +9,7 @@ export const products: Product[] = [
     image: "/apple.png",
     description: "Fresh and sweet red apples.",
     category: Category.FRUITS,
+    brand: "FreshFarm",
   },
   {
     id: "2",
@@ -17,6 +18,7 @@ export const products: Product[] = [
     image: "/banana.png",
     description: "Organic bananas rich in potassium.",
     category: Category.FRUITS,
+    brand: "NatureGrow",
   },
   {
     id: "3",
@@ -25,5 +27,6 @@ export const products: Product[] = [
     image: "/carrot.png",
     description: "Crunchy and healthy carrots.",
     category: Category.VEGETABLES,
+    brand: "GreenHarvest",
   },
-]
+];

@@ -29,4 +29,5 @@ export interface Product {
   image: string
   description: string
   category: Category
+  brand : string
 }

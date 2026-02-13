@@ -2,7 +2,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-export default async function SplashScreen(){
+export default function SplashScreen(){
 
   const navigate= useNavigate();
 
@@ -11,7 +11,7 @@ export default async function SplashScreen(){
     //redirect after 1.5 s
     const timer = setTimeout(() => {
       navigate("/onboarding")
-    }, 1500)
+    }, 3000)
 
     return () => clearTimeout(timer)    //to avoid memory leak , if component unmounts before 1.5 second
   }, [navigate]);   //Even though it usually doesn’t change, React’s lint rule wants it included.

@@ -1,19 +1,50 @@
 import { NavLink } from "react-router-dom"
+import {
+  Store,
+  Search,
+  ShoppingCart,
+  Heart,
+  User
+} from "lucide-react"
 
 const BottomNav = () => {
-    //use nav bcoz it works like divs but represents a div which contians nav LInks
+  //tailwind: items center is vertically centering the div ,turning active to green and incative to gray
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `flex flex-col items-center text-xs ${
+      isActive ? "text-[#53B175]" : "text-gray-500"
+    }`
+
   return (
+    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-sm">
+      <div className="flex justify-around py-3">
 
-    
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-3 md:hidden">
-      <NavLink to="/home">Home</NavLink>
-      <NavLink to="/cart">Cart</NavLink>
-      <NavLink to="/favorites">Fav</NavLink>
-      <NavLink to="/account">Account</NavLink>
+        <NavLink to="/home" className={linkClass}>
+          <Store size={22} />
+          <span className="mt-1">Shop</span>
+        </NavLink>
+
+        <NavLink to="/explore" className={linkClass}>
+          <Search size={22} />
+          <span className="mt-1">Explore</span>
+        </NavLink>
+
+        <NavLink to="/cart" className={linkClass}>
+          <ShoppingCart size={22} />
+          <span className="mt-1">Cart</span>
+        </NavLink>
+
+        <NavLink to="/favourite" className={linkClass}>
+          <Heart size={22} />
+          <span className="mt-1">Favourite</span>
+        </NavLink>
+
+        <NavLink to="/account" className={linkClass}>
+          <User size={22} />
+          <span className="mt-1">Account</span>
+        </NavLink>
+
+      </div>
     </nav>
-
-    //tail widnd : fixed position ,using bottom to define pos relative to screen, 
-    //border at top ,vertical padding of 3,hiddne on med or larger screens
   )
 }
 
