@@ -39,7 +39,7 @@ const Onboarding = () => {
 
         {/* Button */}
         <button
-          onClick={() => navigate("/home")}
+          onClick={() => navigate("/signup")}
           
           className="bg-[#53B175] hover:bg-[#429964] transition-colors py-4 rounded-xl text-lg font-medium"
         >

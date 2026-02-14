@@ -1,5 +1,6 @@
 import ProductCard from "../Components/Product/ProductCard"
 import { products } from "../Data/product"
+import SearchBar from "../Components/UI/SearchBar"
 
 const Home = () => {
   return (
@@ -7,6 +8,10 @@ const Home = () => {
     <div className="px-4 py-6 max-w-7xl mx-auto">
         {/* */}
       <h1 className="text-xl font-bold mb-4">Home</h1>
+      <div className="px-6 mt-4">
+        <SearchBar />
+      </div>
+
      {/**grid have cols based on size */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (

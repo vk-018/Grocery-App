@@ -20,7 +20,9 @@ import Explore from "../Pages/home/Explore"
 import SubPageLayout from "./layout/SubPageLayout"
 import CategoryProducts from "../Pages/category/CategoryProduct"
 import FilterPage from "../Pages/category/FilterPage"
-
+import Cart from "../Pages/cart/Cart"
+import Checkout from "../Pages/checkout/Checkout"
+import OrderSuccess from "../Pages/order/OrderSuccess"
 
 //layout then corresponfing pages as nested elements with thier recpective routes
 export const router = createBrowserRouter([
@@ -41,6 +43,7 @@ export const router = createBrowserRouter([
     children: [
       { path: "/home", element: <Home /> },
       {path: "/explore"  , element: <Explore/>} ,
+      { path: "/cart", element: <Cart /> },
     ],
   },
   {
@@ -48,8 +51,9 @@ export const router = createBrowserRouter([
   children: [
     { path: "/category/:id", element: <CategoryProducts /> },
     { path: "/product/:id", element: <ProductDetail/> },
-    { path: "/category/:id/filter", element: <FilterPage /> }
-
+    { path: "/category/:id/filter", element: <FilterPage /> },
+    {path : "/checkout" , element: <Checkout/>},
+    {path : "/order-success" , element: <OrderSuccess/>},
   ],
 },
  

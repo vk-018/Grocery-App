@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"      //used to access the
 import { products } from "../../Data/product"
+import { useCartStore } from "../../stores/cart.store";
 
 const ProductDetail = () => {
   const { id } = useParams()
@@ -11,6 +12,8 @@ const ProductDetail = () => {
   if (!product) {
     return <div className="p-6">Product not found</div>   
   }
+
+  const addToCart = useCartStore((state) => state.addToCart)
 
   return (
     <div className="max-w-7xl mx-auto p-6">   {/**max width limit and  auto margin to center horizontally */}
@@ -33,9 +36,19 @@ const ProductDetail = () => {
             ${product.price}
           </p>
 
-          <button className="bg-primary text-white px-6 py-3 rounded-lg">
-            Add to Cart
-          </button>
+          <div className="fixed bottom-0 left-0 w-full bg-white px-6 pb-6 pt-3 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+            <button
+              onClick={() => addToCart(product)}
+              className="w-full bg-[#53B175] hover:bg-[#429964] 
+                        active:scale-[0.98] 
+                        transition-all duration-200
+                        py-4 rounded-2xl 
+                        text-lg font-semibold text-white"
+            >
+              Add To Cart
+            </button>
+          </div>
+
         </div>
 
       </div>
