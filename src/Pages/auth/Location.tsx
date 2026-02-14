@@ -42,7 +42,7 @@ const Location = () => {
       {/* Illustration */}
       <div className="flex justify-center mb-8">
         <img
-          src="/location.png"
+          src="/mapicon.png"
           alt="Location"
           className="w-40"
         />

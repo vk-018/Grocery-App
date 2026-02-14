@@ -32,7 +32,7 @@ const SignUp = () => {
 
       {/* Logo */}
       <div className="flex justify-center mb-8">
-        <img src="/logo.svg" alt="Logo" className="w-10 h-10" />
+        <img src="/redCarrot.png" alt="Logo" className="w-10 h-10" />
       </div>
 
       <h1 className="text-2xl font-semibold mb-2">Sign Up</h1>
@@ -119,7 +119,7 @@ const SignUp = () => {
       <p className="text-center mt-6 text-sm">
         Already have an account?{" "}
         <Link to="/signin" className="text-green-600 font-medium">
-          Singin
+          Signin
         </Link>
       </p>
 

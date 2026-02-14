@@ -9,7 +9,7 @@ const Onboarding = () => {
 
       {/* Background Image */}
       <img
-        src="/onboarding.png"
+        src="/onboardBg.png"
         alt="Delivery"
         className="absolute inset-0 w-full h-full object-cover"
         
@@ -24,7 +24,7 @@ const Onboarding = () => {
 
         {/* Logo Icon */}
         <div className="flex justify-center mb-4">
-          <img src="/logo-white.svg" alt="Logo" className="w-10 h-10" />
+          <img src="/carrot.png" alt="Logo" className="w-10 h-10" />
         </div>
 
         {/* Heading */}

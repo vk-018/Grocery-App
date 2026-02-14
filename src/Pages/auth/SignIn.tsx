@@ -42,7 +42,7 @@ const Login = () => {
 
       {/* Logo */}
       <div className="flex justify-center mb-8">
-        <img src="/logo.svg" alt="Logo" className="w-10 h-10" />
+        <img src="/redCarrot.png" alt="Logo" className="w-10 h-10" />
       </div>
 
       {/* Title */}

@@ -6,7 +6,7 @@ type FormData = {
 }
 
 const EnterNumber = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate()
 
   const {
     register,
@@ -16,7 +16,7 @@ const EnterNumber = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data)
-    navigate("/otp") // or next screen
+    navigate("/otp")
   }
 
   return (
@@ -42,33 +42,22 @@ const EnterNumber = () => {
           Mobile Number
         </label>
 
-        {/* Phone Input */}
-        <div className="flex items-center border-b border-gray-300 focus-within:border-green-500 py-3 mt-2">
-          
-          {/* Flag */}
-          <img
-            src="https://flagcdn.com/w20/bd.png"
-            alt="BD"
-            className="w-6 h-4 mr-3 rounded-sm"
-          />
+        {/* Input */}
+        <div className="border-b border-gray-300 focus-within:border-[#53B175] py-3 mt-2">
 
-          {/* Country Code */}
-          <span className="mr-3 text-gray-700">+880</span>
-
-          {/* Input */}
           <input
             type="tel"
-            maxLength={10}
-            placeholder="Enter mobile number"
+            placeholder="+880 1XXXXXXXXX"
             {...register("phone", {
               required: "Phone number is required",
-              minLength: {
-                value: 8,
-                message: "Enter valid number"
-              },
+              pattern: {
+                value: /^\+?[0-9\s]{8,15}$/,
+                message: "Enter valid phone number"
+              }
             })}
-            className="w-full bg-transparent focus:outline-none"
+            className="w-full bg-transparent focus:outline-none text-lg tracking-wide"
           />
+
         </div>
 
         {errors.phone && (
