@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
+import { useLocationStore } from "../../stores/location.store"
 
 type FormData = {
   zone: string
@@ -9,6 +10,10 @@ type FormData = {
 const Location = () => {
   const navigate = useNavigate()
 
+  const setLocation = useLocationStore(
+    (state) => state.setLocation
+  )
+
   const {
     register,
     handleSubmit,
@@ -16,7 +21,10 @@ const Location = () => {
   } = useForm<FormData>()
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
+    // Save location to global store
+    setLocation(data)
+
+    // Navigate to home
     navigate("/home")
   }
 

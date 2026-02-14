@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
+import { useAuthStore } from "../../stores/auth.store"
 
 type FormData = {
   email: string
@@ -8,8 +8,10 @@ type FormData = {
 }
 
 const Login = () => {
- 
-  const navigate= useNavigate();
+  const navigate = useNavigate()
+
+  const login = useAuthStore((state) => state.login)
+
   const {
     register,
     handleSubmit,
@@ -17,9 +19,22 @@ const Login = () => {
   } = useForm<FormData>()
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
-    navigate("/mobileVerification")
 
+    /**
+     * Simulate backend login
+     * Normally you would call an API here
+     */
+    const fakeUser = {
+      id: "1",
+      name: "John Doe",
+      email: data.email
+    }
+
+    // Save user in global store
+    login(fakeUser)
+
+    // Redirect after login
+    navigate("/mobileVerification")
   }
 
   return (
@@ -101,7 +116,7 @@ const Login = () => {
       <p className="text-center mt-6 text-sm">
         Don’t have an account?{" "}
         <Link to="/signup" className="text-green-600 font-medium">
-          Singup
+          Signup
         </Link>
       </p>
 

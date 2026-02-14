@@ -15,7 +15,7 @@ import Location from "../Pages/auth/Location"
 import Home from "../Pages/Home"
 import ProductDetail from "../Pages/product/ProductDetail"
 import Explore from "../Pages/home/Explore"
-
+import Favourite from "../Pages/favourite/Favourite"
 
 import SubPageLayout from "./layout/SubPageLayout"
 import CategoryProducts from "../Pages/category/CategoryProduct"
@@ -23,6 +23,8 @@ import FilterPage from "../Pages/category/FilterPage"
 import Cart from "../Pages/cart/Cart"
 import Checkout from "../Pages/checkout/Checkout"
 import OrderSuccess from "../Pages/order/OrderSuccess"
+import SearchResults from "../Pages/search/SearchResult"
+import Account from "../Pages/account/Account"
 
 //layout then corresponfing pages as nested elements with thier recpective routes
 export const router = createBrowserRouter([
@@ -44,6 +46,9 @@ export const router = createBrowserRouter([
       { path: "/home", element: <Home /> },
       {path: "/explore"  , element: <Explore/>} ,
       { path: "/cart", element: <Cart /> },
+      {path: "/search" , element: <SearchResults/>},
+      {path: "/favourite" , element: <Favourite/>},
+      {path: "/account" , element : <Account/>},
     ],
   },
   {

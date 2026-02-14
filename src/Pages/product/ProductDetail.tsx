@@ -1,56 +1,182 @@
-import { useParams } from "react-router-dom"      //used to access the
+import { useParams, useNavigate } from "react-router-dom"
 import { products } from "../../Data/product"
-import { useCartStore } from "../../stores/cart.store";
+import { useCartStore } from "../../stores/cart.store"
+import { useFavouriteStore } from "../../stores/favourite.store"
+import { useState } from "react"
 
 const ProductDetail = () => {
   const { id } = useParams()
-  // useParams extracts dynamic value from URL
+  const navigate = useNavigate()
 
-  // Find product based on id
   const product = products.find((p) => p.id === id)
-   //can add an early check with id too
-  if (!product) {
-    return <div className="p-6">Product not found</div>   
-  }
 
   const addToCart = useCartStore((state) => state.addToCart)
 
+  const addFavourite = useFavouriteStore(
+    (state) => state.addFavourite
+  )
+  const removeFavourite = useFavouriteStore(
+    (state) => state.removeFavourite
+  )
+  const isFavourite = useFavouriteStore(
+    (state) => state.isFavourite(product?.id || "")
+  )
+
+  const [quantity, setQuantity] = useState(1)
+
+  if (!product) return <p>Product not found</p>
+
+  const toggleFavourite = () => {
+    if (isFavourite) {
+      removeFavourite(product.id)
+    } else {
+      addFavourite(product)
+    }
+  }
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity)
+    navigate("/cart")
+  }
+
   return (
-    <div className="max-w-7xl mx-auto p-6">   {/**max width limit and  auto margin to center horizontally */}
-      <div className="grid md:grid-cols-2 gap-10">    {/*only med or larger to grid columns   // img- info kind of */}
-        
-        {/* Product Image */}
-        <div className="h-80 bg-gray-100 rounded-xl" />
+    <div className="min-h-screen bg-white pb-32">
 
-        {/* Product Info */}
-        <div>
-          <h1 className="text-2xl font-bold mb-4">
-            {product.name}
-          </h1>
+      {/* Image Section */}
+      <div className="relative bg-gray-100 rounded-b-3xl p-6">
 
-          <p className="text-gray-500 mb-4">
-            {product.description}
-          </p>
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="absolute top-6 left-6 text-xl"
+        >
+          ←
+        </button>
 
-          <p className="text-xl font-semibold mb-6">
-            ${product.price}
-          </p>
+        {/* Share Button */}
+        <button className="absolute top-6 right-6 text-xl">
+          ⤴
+        </button>
 
-          <div className="fixed bottom-0 left-0 w-full bg-white px-6 pb-6 pt-3 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="mx-auto h-64 object-contain"
+        />
+      </div>
+
+      {/* Content Section */}
+      <div className="px-6 mt-6">
+
+        {/* Title + Favourite */}
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-semibold">
+              {product.name}
+            </h1>
+            <p className="text-gray-400">
+              1kg, Price
+            </p>
+          </div>
+
+          <button onClick={toggleFavourite} className="text-2xl">
+            {isFavourite ? "❤️" : "🤍"}
+          </button>
+        </div>
+
+        {/* Quantity + Price */}
+        <div className="flex justify-between items-center mt-6">
+
+          <div className="flex items-center gap-4">
+
             <button
-              onClick={() => addToCart(product)}
-              className="w-full bg-[#53B175] hover:bg-[#429964] 
-                        active:scale-[0.98] 
-                        transition-all duration-200
-                        py-4 rounded-2xl 
-                        text-lg font-semibold text-white"
+              onClick={() =>
+                setQuantity((prev) =>
+                  prev > 1 ? prev - 1 : 1
+                )
+              }
+              className="w-10 h-10 border rounded-lg"
             >
-              Add To Cart
+              -
+            </button>
+
+            <span className="text-lg font-medium">
+              {quantity}
+            </span>
+
+            <button
+              onClick={() =>
+                setQuantity((prev) => prev + 1)
+              }
+              className="w-10 h-10 border rounded-lg text-primary"
+            >
+              +
             </button>
           </div>
 
+          <span className="text-2xl font-semibold">
+            ${product.price}
+          </span>
         </div>
 
+        {/* Divider */}
+        <div className="border-t my-6" />
+
+        {/* Product Detail Section */}
+        <div className="mb-6">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-semibold text-lg">
+              Product Detail
+            </h3>
+            <span>⌄</span>
+          </div>
+
+          <p className="text-gray-400 text-sm leading-relaxed">
+            Apples Are Nutritious. Apples May Be Good For Weight Loss.
+            Apples May Be Good For Your Heart. As Part Of A
+            Healthful And Varied Diet.
+          </p>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t my-6" />
+
+        {/* Nutritions */}
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="font-semibold text-lg">
+            Nutritions
+          </h3>
+          <div className="flex items-center gap-3">
+            <span className="bg-gray-100 px-3 py-1 rounded-lg text-sm text-gray-500">
+              100gr
+            </span>
+            <span>›</span>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t my-6" />
+
+        {/* Review */}
+        <div className="flex justify-between items-center">
+          <h3 className="font-semibold text-lg">
+            Review
+          </h3>
+
+          <div className="text-orange-500">
+            ★★★★★
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Add To Basket Button */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white p-6 shadow-md">
+        <button
+          onClick={handleAddToCart}
+          className="w-full bg-[#53B175] text-white py-4 rounded-2xl text-lg font-semibold"
+        >
+          Add To Basket
+        </button>
       </div>
     </div>
   )
