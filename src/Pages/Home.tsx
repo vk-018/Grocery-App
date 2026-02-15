@@ -11,7 +11,7 @@ const Home = () => {
 
       {/* Top Logo */}
       <div className="flex justify-center mb-2">
-        <img src="/carrot.png" alt="logo" className="w-6 h-6" />
+        <img src="/redCarrot.png" alt="logo" className="w-6 h-6" />
       </div>
 
       {/* Location */}
@@ -25,16 +25,16 @@ const Home = () => {
       </div>
 
       {/* Search */}
-      <div className="mb-6">
+      <div className="mb-3">
         <SearchBar />
       </div>
 
       {/* Banner */}
-      <div className="rounded-2xl overflow-hidden mb-6">
+      <div className=" overflow-hidden mb-6">
         <img
           src="/banner.png"
           alt="Banner"
-          className="w-full h-32 object-cover"
+          className="w-full h-28 "
         />
       </div>
 
